@@ -1,0 +1,15 @@
+---
+import TagLink from "../TagLink.astro";
+interface Props {
+  link: string;
+}
+
+const { link } = Astro.props;
+---
+
+<TagLink
+  link={link}
+  iconUrl="/assets/notion.svg"
+  bg_color="#bbb"
+  border_color="#bbbbbb33"
+/>

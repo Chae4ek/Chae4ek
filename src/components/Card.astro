@@ -1,0 +1,162 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  lastUpdateDate?: string;
+  firstUploadDate?: string;
+  imageUrl?: string;
+  bgColor?: string;
+}
+
+const {
+  title,
+  description,
+  lastUpdateDate,
+  firstUploadDate,
+  imageUrl,
+  bgColor,
+} = Astro.props;
+
+const bg_color = bgColor ?? "var(--card_bg_color)";
+const image_url = `url(${imageUrl}),`;
+const image_url_AND_bg_color = `${imageUrl ? image_url : ""} ${bg_color}`;
+---
+
+<li class="list">
+  <ul class="row">
+    <li class="font-date li-date">
+      {lastUpdateDate ?? "Unknown"}<br />
+      <span class="font-date-dot">•</span><br />
+      <span class="font-date-dot">•</span><br />
+      <span class="font-date-dot">•</span><br />
+      {firstUploadDate ?? "Unknown"}
+    </li>
+    <li class="li-card">
+      <div class="row card">
+        <div class="card-image" role="img"></div>
+        <div class="col card-desc">
+          <h2>{title}</h2>
+          <p>{description}</p>
+        </div>
+      </div>
+      <ul class="row bottom-tags">
+        <slot name="tags" />
+      </ul>
+      <ul class="col right-tags">
+        <slot name="links" />
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<style lang="scss" is:global>
+  .list {
+    display: flex;
+    &:last-of-type:nth-child(odd)::after {
+      pointer-events: none;
+      content: "";
+      width: 58.4rem;
+      height: 12rem;
+    }
+  }
+  li:nth-of-type(2n) .li-date {
+    order: 1;
+    align-items: flex-start;
+    margin: 0 0 0 3rem;
+  }
+</style>
+
+<style lang="scss" define:vars={{ image_url_AND_bg_color }}>
+  .li-date {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2.2rem 0 0;
+    align-items: flex-end;
+    justify-content: center;
+    width: 10rem;
+    height: auto;
+  }
+  .card {
+    width: 42.4rem;
+    height: 12rem;
+    border-radius: 1.6rem;
+    box-shadow: 0 0 4rem 0 var(--card_shadow_color);
+    overflow: clip;
+    position: relative;
+    transition: box-shadow 0.15s;
+    &::after {
+      pointer-events: none;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background-color: #000;
+      opacity: var(--card_opacity);
+      transition: opacity 0.15s;
+    }
+    & > .card-image {
+      width: 12rem;
+      height: 100%;
+      flex-shrink: 0;
+      background:
+        linear-gradient(
+          270deg,
+          var(--card_bg_color) 0,
+          var(--card_bg_color_a) 100%
+        ),
+        var(--image_url_AND_bg_color) no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+    & .card-desc {
+      gap: 0.125rem;
+      z-index: 1;
+      padding: 0 2.88rem 0 0.6rem;
+      width: 100%;
+      height: 100%;
+      background: var(--card_bg_color);
+      & > h2 {
+        height: 3.8rem;
+      }
+    }
+  }
+  .li-card {
+    position: relative;
+    &:hover {
+      cursor: default;
+      & > .card {
+        box-shadow: 0 0 4rem 0 var(--card_shadow_color_hover);
+        &::after {
+          opacity: 0;
+        }
+      }
+    }
+    &:active:hover {
+      & > .card {
+        box-shadow: none;
+        transition: box-shadow 0.05s;
+        &::after {
+          opacity: var(--card_active_opacity);
+          transition: opacity 0.05s;
+        }
+      }
+    }
+  }
+  .bottom-tags {
+    z-index: 2;
+    position: absolute;
+    right: 1.8rem;
+    bottom: -0.8rem;
+    gap: 1.1rem;
+  }
+  .right-tags {
+    z-index: 2;
+    position: absolute;
+    right: -0.8rem;
+    top: 1rem;
+    gap: 1.1rem;
+  }
+</style>

@@ -1,0 +1,15 @@
+---
+import Tag from "../Tag.astro";
+interface Props {
+  description?: string;
+}
+
+const { description } = Astro.props;
+---
+
+<Tag
+  text="React"
+  description={description ?? "Written in React"}
+  bg_color="linear-gradient(99deg, #66e3ff 0.85%, #ba63ff 100.85%)"
+  border_color="#66e3ff33"
+/>

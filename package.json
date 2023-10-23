@@ -1,0 +1,27 @@
+{
+  "name": "chae4ek",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^3.3.3",
+    "astro-compress": "^2.0.15",
+    "autoprefixer": "^10.4.16",
+    "sass": "^1.69.4"
+  },
+  "browserslist": {
+    "production": [
+      "defaults"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

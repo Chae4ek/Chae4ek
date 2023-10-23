@@ -1,0 +1,15 @@
+---
+import Tag from "../Tag.astro";
+interface Props {
+  description?: string;
+}
+
+const { description } = Astro.props;
+---
+
+<Tag
+  text="css"
+  description={description ?? "Pure CSS"}
+  bg_color="#ffdf37"
+  border_color="#ffdf3733"
+/>

@@ -1,0 +1,10 @@
+---
+import TagLink from "../TagLink.astro";
+interface Props {
+  link: string;
+}
+
+const { link } = Astro.props;
+---
+
+<TagLink link={link} text="Demo" bg_color="#30ff6e" border_color="#30ff6e33" />

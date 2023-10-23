@@ -1,0 +1,15 @@
+---
+import Tag from "../Tag.astro";
+interface Props {
+  description?: string;
+}
+
+const { description } = Astro.props;
+---
+
+<Tag
+  text="C++"
+  description={description ?? "Written in C++"}
+  bg_color="#ff4e77"
+  border_color="#ff4e7733"
+/>

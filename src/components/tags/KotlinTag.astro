@@ -1,0 +1,15 @@
+---
+import Tag from "../Tag.astro";
+interface Props {
+  description?: string;
+}
+
+const { description } = Astro.props;
+---
+
+<Tag
+  text="Kotlin"
+  description={description ?? "Written in Kotlin"}
+  bg_color="#ba63ff"
+  border_color="#ba63ff33"
+/>

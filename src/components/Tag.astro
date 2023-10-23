@@ -1,0 +1,81 @@
+---
+interface Props {
+  text: string;
+  description: string;
+  bg_color: string;
+  border_color: string;
+}
+
+const { text, description, bg_color, border_color } = Astro.props;
+---
+
+<li class="non-selectable">
+  <p class="font-tag">{description}</p>
+  <h3 class="font-tag">{text}</h3>
+</li>
+
+<style lang="scss" define:vars={{ bg_color, border_color }}>
+  li {
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    width: auto;
+    height: 2rem;
+    padding: 0 0.8rem;
+    border-radius: 0.6rem;
+    outline: 0.3rem solid var(--border_color);
+    background: var(--bg_color);
+    &::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: "";
+      width: 100%;
+      height: 100%;
+      border-radius: 0.6rem;
+      outline: 0.3rem solid var(--border_color);
+      background-color: #fff;
+      opacity: 0;
+      transition:
+        opacity 0.15s,
+        background-color 0.15s;
+    }
+    & > p {
+      pointer-events: none;
+      display: flex;
+      color: var(--primary_font_color);
+      background-color: var(--tag_bg_color);
+      z-index: 1;
+      position: absolute;
+      justify-content: center;
+      border-radius: 1rem;
+      padding: 0.25rem 0.75rem;
+      min-width: 7rem;
+      width: max-content;
+      max-width: 14rem;
+      height: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 3rem;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    &:hover {
+      &::after {
+        opacity: 0.25;
+      }
+      & > p {
+        opacity: 1;
+      }
+    }
+    &:active:hover {
+      &::after {
+        background-color: #000;
+        opacity: 0.15;
+        transition:
+          opacity 0.05s,
+          background-color 0.05s;
+      }
+    }
+  }
+</style>
