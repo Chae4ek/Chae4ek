@@ -11,6 +11,7 @@ import ReactTag from "../components/tags/ReactTag.astro";
 import DemoTagLink from "../components/tags/DemoTagLink.astro";
 import KotlinTag from "../components/tags/KotlinTag.astro";
 import NotionTagLink from "../components/tags/NotionTagLink.astro";
+import ComposeTag from "../components/tags/ComposeTag.astro";
 ---
 
 <Layout title="Chae4ek" description="About me">
@@ -86,6 +87,7 @@ import NotionTagLink from "../components/tags/NotionTagLink.astro";
       imageUrl="/Chae4ek/assets/newston.webp"
       bgColor="#000"
     >
+      <ComposeTag slot="tags" />
       <KotlinTag slot="tags" />
       <DemoTagLink
         slot="links"

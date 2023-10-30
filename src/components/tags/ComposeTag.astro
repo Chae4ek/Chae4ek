@@ -1,0 +1,15 @@
+---
+import Tag from "../Tag.astro";
+interface Props {
+  description?: string;
+}
+
+const { description } = Astro.props;
+---
+
+<Tag
+  text="Compose"
+  description={description ?? "Written using Jetpack Compose"}
+  bg_color="linear-gradient(99deg, #2eff68 0.85%, #38dbff 100.85%)"
+  border_color="#2eff6833"
+/>
