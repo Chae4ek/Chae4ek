@@ -9,10 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.3.3",
-    "astro-compress": "^2.0.15",
+    "astro": "^3.4.0",
+    "astro-compress": "^2.2.0",
     "autoprefixer": "^10.4.16",
-    "sass": "^1.69.4"
+    "sass": "^1.69.5"
   },
   "browserslist": {
     "production": [
